@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 17:07:53
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-01 22:58:03
+ * @Last Modified time: 2018-01-01 23:49:43
  * @flow
  */
 
@@ -19,8 +19,11 @@ app.use(bodyparser({
 
 const router = new Router();
 
+let num = 0;
+
 router.get('/', async (ctx) => {
-    await app.models.User.create({});
+    num += 1;
+    await app.models.User.create({ firstName: `${num}` });
     ctx.body = await app.models.User.all();
 });
 

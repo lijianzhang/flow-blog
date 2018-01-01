@@ -5,11 +5,11 @@
 [libs]
 
 [lints]
-
 [options]
 esproposal.decorators=ignore
 esproposal.class_instance_fields=enable
 esproposal.class_static_fields=enable
+module.file_ext=.vue 
+module.file_ext=.js
 
 [version]
-^0.62.0

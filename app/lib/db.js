@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 19:18:15
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-01 22:39:13
+ * @Last Modified time: 2018-01-02 00:29:34
  */
 
 import fs from 'fs';
@@ -24,7 +24,6 @@ if (config.use_env_variable) {
 }
 
 export default sequelize;
-
 
 fs
     .readdirSync(path.resolve(__dirname, '..', 'models'))
