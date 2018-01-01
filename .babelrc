@@ -1,0 +1,14 @@
+{
+    "presets": [[
+            "env",
+            {
+                "targets": {
+                    "node": true
+                }
+            }
+        ], "stage-0", "flow"],
+    "plugins": [
+        "transform-decorators-legacy"
+    ],
+    "retainLines": true
+}
