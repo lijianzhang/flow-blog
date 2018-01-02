@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 19:18:15
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-02 00:29:34
+ * @Last Modified time: 2018-01-02 23:13:47
  */
 
 import fs from 'fs';
@@ -29,8 +29,7 @@ fs
     .readdirSync(path.resolve(__dirname, '..', 'models'))
     .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
     .forEach((file) => {
-        const Model = require(path.resolve(__dirname, '..', 'models', file)).default;
-        Model.init();
+        require(path.resolve(__dirname, '..', 'models', file)).default;
     });
 
 Object.keys(sequelize.models).forEach((modelName) => {

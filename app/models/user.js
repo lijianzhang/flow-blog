@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 21:31:15
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-02 22:31:33
+ * @Last Modified time: 2018-01-02 23:15:12
  * @flow
  */
 
@@ -24,8 +24,13 @@ class User extends BaseDBModel {
     @Attr(Sequelize.STRING)
     email: ?string;
 
+    @Attr(Sequelize.STRING)
     username: string;
 
+    @Attr({
+        type: Sequelize.STRING,
+        allowNull: false,
+    })
     password: string;
 
     get fullName(): string {
@@ -33,5 +38,10 @@ class User extends BaseDBModel {
         return this.firstName + this.lastName;
     }
 }
+
+User.init();
+
+User.sync({ force: true });
+
 
 export default User;

@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 17:07:53
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-02 22:54:49
+ * @Last Modified time: 2018-01-02 23:11:20
  * @flow
  */
 
@@ -20,8 +20,12 @@ app.use(bodyparser({
 const router = new Router();
 
 router.get('/', async (ctx) => {
-    await app.models.User.create();
-    ctx.body = await app.models.User.all();
+    try {
+        await app.models.User.create(ctx.query);
+        ctx.body = await app.models.User.all();
+    } catch (error) {
+        ctx.body = error.message;
+    }
 });
 
 app.use(router.routes());

@@ -2,52 +2,20 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 20:27:19
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-02 22:58:53
+ * @Last Modified time: 2018-01-02 23:04:31
  * @flow
  */
 
 import Model from 'sequelize/lib/model';
-import {
-    ABSTRACT,
-    STRING,
-    CHAR,
-    TEXT,
-    NUMBER,
-    TINYINT,
-    SMALLINT,
-    MEDIUMINT,
-    INTEGER,
-    BIGINT,
-    FLOAT,
-    TIME,
-    DATE,
-    DATEONLY,
-    BOOLEAN,
-    NOW,
-    BLOB,
-    DECIMAL,
-    UUID,
-    UUIDV1,
-    UUIDV4,
-    HSTORE,
-    JSON,
-    JSONB,
-    VIRTUAL,
-    ARRAY,
-    ENUM,
-    RANGE,
-    REAL,
-    DOUBLE,
-    GEOMETRY,
-    GEOGRAPHY,
-} from 'sequelize/lib/data-types';
-import type { DefineOptions } from 'sequelize';
+
+import type { DefineOptions, DataTypes } from 'sequelize';
 import sequelize from './db';
 
-type valueType = typeof ABSTRACT | typeof STRING | typeof CHAR | typeof TEXT | typeof NUMBER | typeof TINYINT | typeof SMALLINT | typeof MEDIUMINT | typeof INTEGER | typeof BIGINT | typeof FLOAT | typeof TIME | typeof DATE | typeof DATEONLY | typeof BOOLEAN | typeof NOW | typeof BLOB | typeof DECIMAL | typeof DECIMAL | typeof UUID | typeof UUIDV1 | typeof UUIDV4 | typeof HSTORE | typeof JSON | typeof JSONB | typeof VIRTUAL | typeof ARRAY | typeof ENUM | typeof RANGE | typeof REAL | typeof DOUBLE | typeof GEOMETRY | typeof GEOGRAPHY //eslint-disable-line
+type valueType = DataTypes;
+
 
 type configType = {
-    type: valueType,
+    type: valueType, // 字段类型
     defaultValue: ?any,
     allowNull: ?boolean,
     primaryKey: ?boolean,
@@ -90,7 +58,13 @@ class BaseDBModel extends Model {
 
 export default BaseDBModel;
 
-
+/**
+ *
+ *
+ * @export
+ * @param {configType} config
+ * @returns {Function}
+ */
 export function Attr(config: configType): Function {
     return function AttrDecorator(model: BaseDBModel, key: string, decorator: Object) {
         if (!model.constructor.fields) model.constructor.fields = {};
