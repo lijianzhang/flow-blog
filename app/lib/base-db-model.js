@@ -2,13 +2,48 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 20:27:19
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-02 01:19:31
+ * @Last Modified time: 2018-01-02 22:54:05
  * @flow
  */
 
 import Model from 'sequelize/lib/model';
+import {
+    ABSTRACT,
+    STRING,
+    CHAR,
+    TEXT,
+    NUMBER,
+    TINYINT,
+    SMALLINT,
+    MEDIUMINT,
+    INTEGER,
+    BIGINT,
+    FLOAT,
+    TIME,
+    DATE,
+    DATEONLY,
+    BOOLEAN,
+    NOW,
+    BLOB,
+    DECIMAL,
+    UUID,
+    UUIDV1,
+    UUIDV4,
+    HSTORE,
+    JSON,
+    JSONB,
+    VIRTUAL,
+    ARRAY,
+    ENUM,
+    RANGE,
+    REAL,
+    DOUBLE,
+    GEOMETRY,
+    GEOGRAPHY,
+} from 'sequelize/lib/data-types';
 import type { DefineAttributes, DefineOptions } from 'sequelize';
 import sequelize from './db';
+
 
 type DefineConfig = DefineOptions<any> & { sequelize?: typeof sequelize}
 
@@ -33,3 +68,36 @@ class BaseDBModel extends Model {
 
 
 export default BaseDBModel;
+
+
+type valueType = typeof ABSTRACT | typeof STRING | typeof CHAR | typeof TEXT | typeof NUMBER | typeof TINYINT | typeof SMALLINT | typeof MEDIUMINT | typeof INTEGER | typeof BIGINT | typeof FLOAT | typeof TIME | typeof DATE | typeof DATEONLY | typeof BOOLEAN | typeof NOW | typeof BLOB | typeof DECIMAL | typeof DECIMAL | typeof UUID | typeof UUIDV1 | typeof UUIDV4 | typeof HSTORE | typeof JSON | typeof JSONB | typeof VIRTUAL | typeof ARRAY | typeof ENUM | typeof RANGE | typeof REAL | typeof DOUBLE | typeof GEOMETRY | typeof GEOGRAPHY //eslint-disable-line
+
+type configType = valueType | {
+    type: valueType,
+    defaultValue: ?any,
+    allowNull: ?boolean,
+    primaryKey: ?boolean,
+    autoIncrement?: boolean,
+    comment: ?string,
+    field: ?string,
+    unique: ?boolean | string,
+    values: ?any[],
+    references: ?{
+        model: Model,
+        key: string,
+        deferrable: any,
+    }
+}
+
+
+export function Attr(config: configType): Function {
+    return function AttrDecorator(model: BaseDBModel, key: string, decorator: Object) {
+        if (!model.constructor.fields) model.constructor.fields = {};
+        if (!model.constructor.fields[key]) {
+            model.constructor.fields[key] = config;
+        } else {
+            throw new Error(`${model.constructor.name}的${key} 已经被定义了`);
+        }
+        return decorator;
+    };
+}
