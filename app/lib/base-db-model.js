@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 20:27:19
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-02 22:54:05
+ * @Last Modified time: 2018-01-02 22:58:53
  * @flow
  */
 
@@ -41,15 +41,36 @@ import {
     GEOMETRY,
     GEOGRAPHY,
 } from 'sequelize/lib/data-types';
-import type { DefineAttributes, DefineOptions } from 'sequelize';
+import type { DefineOptions } from 'sequelize';
 import sequelize from './db';
+
+type valueType = typeof ABSTRACT | typeof STRING | typeof CHAR | typeof TEXT | typeof NUMBER | typeof TINYINT | typeof SMALLINT | typeof MEDIUMINT | typeof INTEGER | typeof BIGINT | typeof FLOAT | typeof TIME | typeof DATE | typeof DATEONLY | typeof BOOLEAN | typeof NOW | typeof BLOB | typeof DECIMAL | typeof DECIMAL | typeof UUID | typeof UUIDV1 | typeof UUIDV4 | typeof HSTORE | typeof JSON | typeof JSONB | typeof VIRTUAL | typeof ARRAY | typeof ENUM | typeof RANGE | typeof REAL | typeof DOUBLE | typeof GEOMETRY | typeof GEOGRAPHY //eslint-disable-line
+
+type configType = {
+    type: valueType,
+    defaultValue: ?any,
+    allowNull: ?boolean,
+    primaryKey: ?boolean,
+    autoIncrement?: boolean,
+    comment: ?string,
+    field: ?string,
+    unique: ?boolean | string,
+    values: ?any[],
+    references: ?{
+        model: Model,
+        key: string,
+        deferrable: any,
+    }
+}
 
 
 type DefineConfig = DefineOptions<any> & { sequelize?: typeof sequelize}
 
 
 class BaseDBModel extends Model {
-    static fields: DefineAttributes;
+    static fields: {
+        [key: string]: configType
+    };
     static config: DefineConfig;
     ccc: string;
 
@@ -68,26 +89,6 @@ class BaseDBModel extends Model {
 
 
 export default BaseDBModel;
-
-
-type valueType = typeof ABSTRACT | typeof STRING | typeof CHAR | typeof TEXT | typeof NUMBER | typeof TINYINT | typeof SMALLINT | typeof MEDIUMINT | typeof INTEGER | typeof BIGINT | typeof FLOAT | typeof TIME | typeof DATE | typeof DATEONLY | typeof BOOLEAN | typeof NOW | typeof BLOB | typeof DECIMAL | typeof DECIMAL | typeof UUID | typeof UUIDV1 | typeof UUIDV4 | typeof HSTORE | typeof JSON | typeof JSONB | typeof VIRTUAL | typeof ARRAY | typeof ENUM | typeof RANGE | typeof REAL | typeof DOUBLE | typeof GEOMETRY | typeof GEOGRAPHY //eslint-disable-line
-
-type configType = valueType | {
-    type: valueType,
-    defaultValue: ?any,
-    allowNull: ?boolean,
-    primaryKey: ?boolean,
-    autoIncrement?: boolean,
-    comment: ?string,
-    field: ?string,
-    unique: ?boolean | string,
-    values: ?any[],
-    references: ?{
-        model: Model,
-        key: string,
-        deferrable: any,
-    }
-}
 
 
 export function Attr(config: configType): Function {
