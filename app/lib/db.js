@@ -2,13 +2,14 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 19:18:15
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-02 23:13:47
+ * @Last Modified time: 2018-01-06 11:02:03
  */
 
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
 import database from '../../config/db-config.json';
+
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -29,7 +30,7 @@ fs
     .readdirSync(path.resolve(__dirname, '..', 'models'))
     .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
     .forEach((file) => {
-        require(path.resolve(__dirname, '..', 'models', file)).default;
+        require(path.resolve(__dirname, '..', 'models', file)).default; //eslint-disable-line
     });
 
 Object.keys(sequelize.models).forEach((modelName) => {

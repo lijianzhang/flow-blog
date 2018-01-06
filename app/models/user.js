@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 21:31:15
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-02 23:31:29
+ * @Last Modified time: 2018-01-06 20:27:31
  * @flow
  */
 
@@ -10,33 +10,30 @@
 import Sequelize from 'sequelize';
 import BaseDBModel, { Attr } from '../lib/base-db-model';
 
-
 class User extends BaseDBModel {
+    /** 主键 */
     @Attr({
-        type: Sequelize.STRING,
-        defaultValue: 'test',
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
     })
-    firstName: ?string;
-
-    @Attr(Sequelize.STRING)
-    lastName: ?string;
-
-    @Attr(Sequelize.STRING)
-    email: ?string;
-
-    @Attr(Sequelize.STRING)
-    username: string;
+    id: number;
 
     @Attr({
         type: Sequelize.STRING,
         allowNull: false,
+        validate: {
+            len: [6, 128],
+            notEmpty: true,
+        },
     })
     password: string;
 
-    get fullName(): string {
-        if (!this.firstName || !this.lastName) return '';
-        return this.firstName + this.lastName;
-    }
+    @Attr({
+        type: Sequelize.STRING,
+        defaultValue: 'test',
+    })
+    name: ?string;
 }
 
 User.init();

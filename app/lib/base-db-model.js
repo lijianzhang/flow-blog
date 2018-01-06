@@ -2,50 +2,45 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 20:27:19
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-02 23:04:31
+ * @Last Modified time: 2018-01-05 23:12:39
  * @flow
  */
 
 import Model from 'sequelize/lib/model';
 
-import type { DefineOptions, DataTypes } from 'sequelize';
+import { type ResolvedDefineOptions, type DefineAttributeColumnOptions } from 'sequelize';
 import sequelize from './db';
 
-type valueType = DataTypes;
+// type valueType = DataTypes;
+
+// type configType = {
+//     type: valueType, // 字段类型
+//     defaultValue: ?any,
+//     allowNull: ?boolean,
+//     primaryKey: ?boolean,
+//     autoIncrement?: boolean,
+//     comment: ?string,
+//     field: ?string,
+//     unique: ?boolean | string,
+//     values: ?any[],
+//     references: ?{
+//         model: Model,
+//         key: string,
+//         deferrable: any,
+//     }
+// }
 
 
-type configType = {
-    type: valueType, // 字段类型
-    defaultValue: ?any,
-    allowNull: ?boolean,
-    primaryKey: ?boolean,
-    autoIncrement?: boolean,
-    comment: ?string,
-    field: ?string,
-    unique: ?boolean | string,
-    values: ?any[],
-    references: ?{
-        model: Model,
-        key: string,
-        deferrable: any,
-    }
-}
-
-
-type DefineConfig = DefineOptions<any> & { sequelize?: typeof sequelize}
+// type DefineConfig = DefineOptions<any> & { sequelize?: typeof sequelize}
 
 
 class BaseDBModel extends Model {
     static fields: {
-        [key: string]: configType
+        [key: string]: DefineAttributeColumnOptions
     };
-    static config: DefineConfig;
+    static config: ResolvedDefineOptions<*>;
     ccc: string;
 
-    static async findOneByID(): Promise<BaseDBModel> {
-        const model = await this.findAll();
-        return model;
-    }
 
     static init() {
         if (!this.fields) throw new Error(`${this.name}Model: 必须设置fields`);
@@ -65,7 +60,7 @@ export default BaseDBModel;
  * @param {configType} config
  * @returns {Function}
  */
-export function Attr(config: configType): Function {
+export function Attr(config: DefineAttributeColumnOptions): Function {
     return function AttrDecorator(model: BaseDBModel, key: string, decorator: Object) {
         if (!model.constructor.fields) model.constructor.fields = {};
         if (!model.constructor.fields[key]) {
