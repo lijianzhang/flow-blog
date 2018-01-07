@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 22:01:41
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-07 19:14:11
+ * @Last Modified time: 2018-01-08 01:07:23
  * @flow
  */
 
@@ -46,16 +46,17 @@ export default class App extends Koa {
         ctx.status = status;
 
         let body: string;
-
-        ctx.type = ctx.accepts('html', 'text', 'json') || 'html';
+        ctx.type = ctx.accepts('html', 'json', 'application/json', 'text') || 'html';
         if (ctx.app.env === 'development') {
             switch (ctx.type) {
-            case 'text/html': {
+            case 'text/html':
+            case 'html': {
                 if (status === 404) body = ctx.render('404.njk');
                 else body = ctx.render('error.njk', { error: err, status });
                 break;
             }
-            case 'application/json': {
+            case 'application/json':
+            case 'json': {
                 body = JSON.stringify({
                     code: ctx.status,
                     message: err.message,

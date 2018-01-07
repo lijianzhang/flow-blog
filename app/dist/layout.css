@@ -341,7 +341,7 @@ pre {
     line-height: 1.1em;
     color: #525252;
     background: #f8f8f8;
-    box-shadow: 0 1px 0px rgba(0, 0, 0, 0.125);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
 }
 
 /* end hljs */
@@ -388,6 +388,7 @@ li.navbar-item a {
     font-size: 16px;
     line-height: 1.4;
     color: #2c3e50;
+    padding-bottom: 6px;
     text-decoration: none;
 
 }

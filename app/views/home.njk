@@ -7,6 +7,9 @@
             <per>{{item.contentHTML | safe}}</per>
         {% endfor %}
     </section>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
+{% endblock %}
+
+{% block footer %}
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlighting()</script>
 {% endblock %}

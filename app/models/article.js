@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-07 21:18:50
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-07 23:05:06
+ * @Last Modified time: 2018-01-08 00:50:46
  */
 
 import Sequelize from 'sequelize';
@@ -64,10 +64,6 @@ Article.sync({ force: true });
 
 Article.hook('beforeSave', (article: Article) => {
     const descriptionIndex = article.content.indexOf('<!-- more -->');
-    if (descriptionIndex) {
-        article.description = marked(article.content.slice(0, descriptionIndex));
-    } else {
-        throw new Error('必须包含<!-- more -->用来截止描述内容位置');
-    }
+    article.description = marked(article.content.slice(0, descriptionIndex));
     article.contentHTML = marked(article.content);
 });
