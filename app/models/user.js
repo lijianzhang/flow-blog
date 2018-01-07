@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 21:31:15
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-07 15:11:38
+ * @Last Modified time: 2018-01-07 21:27:45
  * @flow
  */
 
@@ -10,6 +10,7 @@
 import Sequelize from 'sequelize';
 import crypto from 'crypto';
 import BaseDBModel, { Attr } from '../lib/base-db-model';
+import ArticleModel from './article';
 
 class User extends BaseDBModel {
     /**
@@ -70,6 +71,8 @@ class User extends BaseDBModel {
 
 User.init();
 
+User.hasMany(ArticleModel, { foreignKey: 'user_id' });
+
 
 User.hook('beforeCreate', (user: User) => {
     user.password = User.encryption(user.password);
@@ -77,6 +80,6 @@ User.hook('beforeCreate', (user: User) => {
 
 
 User.sync({ force: true });
-
+// User.sync();
 
 export default User;

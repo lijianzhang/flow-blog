@@ -2,11 +2,12 @@
  * @Author: lijianzhang
  * @Date: 2018-01-06 23:29:41
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-07 19:07:24
+ * @Last Modified time: 2018-01-07 22:54:51
  * @flow
  */
 
 import App from '../lib/App';
+import ArticleModel from '../models/article';
 
 /**
  * 首页
@@ -21,6 +22,10 @@ export default class Home extends App.Controller {
 
     @App.router.get('/')
     async index() {
-        this.ctx.render('home.njk');
+        const articles = await ArticleModel.findAll();
+        this.ctx.render('home.njk', {
+            module: 'home',
+            articles,
+        });
     }
 }

@@ -1,1 +1,12 @@
 {% extends "layout.njk" %}
+
+{% block content %}
+    <section class="articles">
+        {% for item in articles %}
+            <h3>{{ item.title }}</h3>
+            <per>{{item.contentHTML | safe}}</per>
+        {% endfor %}
+    </section>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+{% endblock %}

@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-06 21:18:26
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-07 14:24:07
+ * @Last Modified time: 2018-01-07 22:59:23
  * @flow
  */
 
@@ -12,8 +12,8 @@ import App, { type AppContext } from './App';
 
 export default class BaseController {
     static prefix: string = '';
-    static sensitive: boolean = false;
-    static strict: boolean = true;
+    static sensitive: boolean;
+    static strict: boolean;
     static Router = Router;
     static subRoutes = [];
 

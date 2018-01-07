@@ -8,17 +8,19 @@
     <title>{%block title%} 首页 {% endblock %}</title>
 </head>
 <body>
-    <div class="page--wrapper">
-        <header class="navbar">
-            <ul class="navbar--list">
-                <li class="navbar--item"><a href="/" class="active">HOME</a></li>
-                <li class="navbar--item"><a href="/archives">ARCHIVES</a></li>
-                <li class="navbar--item"><a href="/other">GITHUB</a></li>
+    <div class="page-wrapper">
+        <header class="page-navbar">
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="/" class="{{ "active" if module === 'home' else "" }}">HOME</a></li>
+                <li class="navbar-item"><a href="/article" class="{{ "active" if module === 'article' else "" }}">Articles</a></li>
+                <li class="navbar-item"><a href="/other">GITHUB</a></li>
             </ul>
         </header>
-        {% block content %}
+        <div class="page-container">
+            {% block content %}
 
-        {% endblock %}
+            {% endblock %}
+        </div>
     </div>
 </body>
 </html>
