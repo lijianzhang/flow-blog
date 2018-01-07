@@ -15,8 +15,12 @@ module.exports = {
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
         'no-shadow': 0,
         'camelcase': 0,
+        'prefer-destructuring': 0,
         'no-console': ['warn', { allow: ['warn', 'error'] }],
         'no-debugger': 0,
         'flowtype/use-flow-type': 1,
+    },
+    globals: {
+        '$keys': true
     }
 };

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layout.css">
+    <title>{%block title%} 首页 {% endblock %}</title>
+</head>
+<body>
+    <div class="page--wrapper">
+        <header class="navbar">
+            <ul class="navbar--list">
+                <li class="navbar--item"><a href="/" class="active">HOME</a></li>
+                <li class="navbar--item"><a href="/archives">ARCHIVES</a></li>
+                <li class="navbar--item"><a href="/other">GITHUB</a></li>
+            </ul>
+        </header>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -2,14 +2,13 @@
  * @Author: lijianzhang
  * @Date: 2018-01-06 21:18:26
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-06 23:52:55
+ * @Last Modified time: 2018-01-07 14:24:07
  * @flow
  */
 
 
-import { type Context } from 'koa';
 import Router from 'koa-router';
-
+import App, { type AppContext } from './App';
 
 export default class BaseController {
     static prefix: string = '';
@@ -32,8 +31,9 @@ export default class BaseController {
         });
 
         this.methods.forEach(({ func, method, path }) => {
-            const middleware = async (ctx: Context, next: () => Promise<void>) => {
+            const middleware = async (ctx: AppContext, next: () => Promise<void>) => {
                 const ctl = new this(ctx, next);
+                ctl.app = ctx.app;
                 await (ctl: any)[func](ctx, next);
             };
 
@@ -57,13 +57,14 @@ export default class BaseController {
     }
 
 
-    constructor(ctx: Context, next: () => Promise<any>) {
+    constructor(ctx: AppContext, next: () => Promise<any>) {
         this.ctx = ctx;
         this.next = next;
     }
 
-    ctx: Context;
+    ctx: AppContext;
     next: () => Promise<any>;
+    app: App;
 }
 
 const METHOD_TYPES = ['get', 'put', 'patch', 'post', 'delete', 'all'];

@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 20:27:19
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-05 23:12:39
+ * @Last Modified time: 2018-01-07 14:10:56
  * @flow
  */
 
@@ -34,7 +34,7 @@ import sequelize from './db';
 // type DefineConfig = DefineOptions<any> & { sequelize?: typeof sequelize}
 
 
-class BaseDBModel extends Model {
+export default class BaseDBModel extends Model {
     static fields: {
         [key: string]: DefineAttributeColumnOptions
     };
@@ -51,8 +51,6 @@ class BaseDBModel extends Model {
 }
 
 
-export default BaseDBModel;
-
 /**
  *
  *
@@ -68,6 +66,21 @@ export function Attr(config: DefineAttributeColumnOptions): Function {
         } else {
             throw new Error(`${model.constructor.name}的${key} 已经被定义了`);
         }
+
+        /** 转化为get set */
+
+        delete decorator.initializer;
+        decorator.get = function get() {
+            return this.get(key);
+        };
+
+        decorator.set = function set(value) {
+            this.set(key, value);
+        };
+
+        decorator.configurable = true;
+
+
         return decorator;
     };
 }
