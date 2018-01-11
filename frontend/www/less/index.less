@@ -1,0 +1,176 @@
+@import './normalize.less';
+
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+
+html,
+body {
+    width: 100%;
+    height: 100%
+}
+
+
+body {
+    margin: 0;
+    color: #34495e;
+    font-size: 15px;
+    line-height: 1.6;
+    background-color: #fff;
+    font-family: 'sourcesanspro', 'Helvetica Neue', Arial, sans-serif
+}
+
+
+
+@font-face {
+    font-family: 'sourcesanspro';
+    src: url("/font/sourcesanspro.woff2") format("woff2"), url("/font/sourcesanspro.woff") format("woff");
+    font-weight: normal;
+    font-style: normal
+}
+
+/* begin hljs */
+
+.hljs {
+    position: relative;
+    border-radius: 2px;
+    line-height: 1.1em;
+    color: #525252;
+}
+
+
+
+.hljs-comment,
+.hljs-quote {
+    color: #a0a1a7;
+    font-style: italic
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+    color: #e96900
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+    color: #e45649
+}
+
+.hljs-literal {
+    color: #0184bb
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+    color: #50a14f
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+    color: #c18401
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+    color: #986801
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+    color: #4078f2
+}
+
+.hljs-emphasis {
+    font-style: italic
+}
+
+.hljs-strong {
+    font-weight: bold
+}
+
+.hljs-link {
+    text-decoration: underline
+}
+
+pre {
+    font-size: 0.8em;
+    background-color: #f8f8f8;
+    font-family: 'Roboto Mono', Monaco, courier, monospace;
+    margin: 1em 0;
+    padding: 1em;
+    border-radius: 2px;
+    line-height: 1.1em;
+    color: #525252;
+    background: #f8f8f8;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+}
+
+/* end hljs */
+
+
+
+.page-wrapper {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.page-container {
+    margin: 2em 10px;
+}
+
+.page-navbar {
+    padding: 20px 100px;
+    min-height: 60px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+
+
+ul.navbar-list {
+    float: right;
+    left: 80px;
+}
+
+li.navbar-item {
+    display: inline-block;
+    padding: 19px 10px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin-right: 16px;
+}
+
+li.navbar-item a {
+    font-size: 16px;
+    line-height: 1.4;
+    color: #2c3e50;
+    padding-bottom: 6px;
+    text-decoration: none;
+
+}
+
+li.navbar-item a.active,
+li.navbar-item a:hover{
+    border-bottom: 2px solid #ff5a5e;
+}
