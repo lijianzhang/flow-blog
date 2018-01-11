@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/assets/app.css">
     <title>{%block title%} 首页 {% endblock %}</title>
@@ -14,7 +14,7 @@
         <header class="page-navbar">
             <ul class="navbar-list">
                 <li class="navbar-item"><a href="/" class="{{ "active" if module === 'home' else "" }}">HOME</a></li>
-                <li class="navbar-item"><a href="/article" class="{{ "active" if module === 'article' else "" }}">Articles</a></li>
+                <li class="navbar-item"><a href="/article" class="{{ "active" if module === 'article' else "" }}">ARTICLES</a></li>
                 <li class="navbar-item"><a href="/other">GITHUB</a></li>
             </ul>
         </header>

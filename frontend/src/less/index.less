@@ -2,6 +2,15 @@
 
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
+blockquote {
+    padding: 8px 20px;
+    background-color: #f8f8f8;
+    border-left: 4px solid #ff5a5e;
+    word-break: break-word;
+    font-weight: 400;
+    line-height: 30px;
+    margin: 0 0 8px;
+}
 
 html,
 body {
@@ -126,7 +135,7 @@ pre {
 
 
 .page-wrapper {
-    width: 700px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -137,7 +146,7 @@ pre {
 .page-navbar {
     padding: 20px 100px;
     min-height: 60px;
-}
+} 
 
 ul {
     margin: 0;
@@ -174,3 +183,16 @@ li.navbar-item a.active,
 li.navbar-item a:hover{
     border-bottom: 2px solid #ff5a5e;
 }
+
+
+@media screen and (max-width: 700px) {
+    .page-navbar {
+        padding: 20px 0;
+        min-height: auto;
+    }
+
+    ul.navbar-list {
+        float: none;
+        text-align: center;
+    }
+}  

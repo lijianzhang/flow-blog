@@ -23,7 +23,7 @@ manifest = new WebpackAssetsManifest({
 
 
 const config = common({
-    entry: { app: ['./www'] },
+    entry: { app: ['./src'] },
 
     devtool: debug ? 'source-map' : null,
     // 牺牲了构建速度的 `source-map' 是最详细的。
