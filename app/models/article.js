@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-07 21:18:50
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-08 00:50:46
+ * @Last Modified time: 2018-01-10 21:21:11
  */
 
 import Sequelize from 'sequelize';
@@ -60,7 +60,6 @@ export default class Article extends BaseDBModel {
 
 Article.init();
 
-Article.sync({ force: true });
 
 Article.hook('beforeSave', (article: Article) => {
     const descriptionIndex = article.content.indexOf('<!-- more -->');

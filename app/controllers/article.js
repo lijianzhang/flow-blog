@@ -2,9 +2,9 @@ import App from '../lib/App';
 import ArticleModel from '../models/article';
 
 export default class User extends App.Controller {
-    @App.router.get('/article')
+    @App.router.post('/article')
     async index() {
-        const { content, title, userId } = this.ctx.query;
+        const { content, title, userId } = this.ctx.request.body;
         const index = content.indexOf('<!-- more -->');
         if (index <= -1) {
             this.ctx.throw(400, '必须包含<!-- more -->用来截止描述内容位置');

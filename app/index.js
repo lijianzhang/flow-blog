@@ -1,8 +1,8 @@
 /*
  * @Author: lijianzhang
  * @Date: 2018-01-01 17:07:53
- * @Last Modified by: 天吾
- * @Last Modified time: 2018-01-11 11:52:24
+ * @Last Modified by: lijianzhang
+ * @Last Modified time: 2018-01-11 23:10:15
  * @flow
  */
 
@@ -29,14 +29,14 @@ app.use(session({
     prefix: 'blog.sess',
 }));
 
-app.use(new CSRF({
-    invalidSessionSecretMessage: 'Invalid session secret',
-    invalidSessionSecretStatusCode: 403,
-    invalidTokenMessage: 'Invalid CSRF token',
-    invalidTokenStatusCode: 403,
-    excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
-    disableQuery: false,
-}));
+// app.use(new CSRF({
+//     invalidSessionSecretMessage: 'Invalid session secret',
+//     invalidSessionSecretStatusCode: 403,
+//     invalidTokenMessage: 'Invalid CSRF token',
+//     invalidTokenStatusCode: 403,
+//     excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
+//     disableQuery: false,
+// }));
 
 app.use(bodyparser({
     formLimit: '1mb',

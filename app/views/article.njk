@@ -2,10 +2,8 @@
 
 {% block content %}
     <section class="articles">
-        {% for item in articles %}
-            <h3><a href="/articles/{{item.id}}">{{ item.title }}</a></h3>
-            <per>{{item.description | safe}}</per>
-        {% endfor %}
+            <h3>{{ article.title }}</h3>
+            <per>{{article.contentHTML | safe}}</per>
     </section>
 {% endblock %}
 

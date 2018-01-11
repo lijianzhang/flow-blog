@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 21:31:15
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-07 21:27:45
+ * @Last Modified time: 2018-01-10 21:21:00
  * @flow
  */
 
@@ -77,9 +77,5 @@ User.hasMany(ArticleModel, { foreignKey: 'user_id' });
 User.hook('beforeCreate', (user: User) => {
     user.password = User.encryption(user.password);
 });
-
-
-User.sync({ force: true });
-// User.sync();
 
 export default User;
