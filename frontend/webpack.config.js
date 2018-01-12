@@ -42,7 +42,6 @@ const config = common({
 
 if (debug) {
     config.entry.app.unshift(require.resolve('react-dev-utils/webpackHotDevClient'));
-    config.entry.app.unshift('react-hot-loader/patch');
     config.plugins.push(
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),

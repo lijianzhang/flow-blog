@@ -1,14 +1,17 @@
 {
-    "presets": [[
+    "presets": [
+        [
             "env",
             {
                 "targets": {
-                    "node": true
+                    "node": "9.0",
+                    "browsers": "last 2 Chrome versions"
                 }
             }
-        ], "stage-0", "flow"],
-    "plugins": [
-        "transform-decorators-legacy"
+        ],
+        "stage-0",
+        "flow"
     ],
+    "plugins": ["transform-decorators-legacy"],
     "retainLines": true
 }

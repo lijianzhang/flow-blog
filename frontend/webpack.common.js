@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const env = require('./env');
 const devConfig = require('../config');
-console.log(devConfig)
 
 const debug = env.debug;
 
