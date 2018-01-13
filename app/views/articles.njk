@@ -1,0 +1,23 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+    <div class="articles_year">
+        {% for year, arr in articlesByYear %}
+            <h1 class="articles_year-title">{{year}}</h1>
+            <div class="articles_year-list">
+                {% for article in arr %}
+                    <div>
+                        <time class="articles_year-time">{{article.createdAt | date('YYYY年MM月DD号')}}</time>
+                        <span><a href="/articles/{{article.id}}">{{article.title}}</a></span>
+                    </div>
+                {% endfor %}
+            </div>
+            
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlighting()</script>
+{% endblock %}

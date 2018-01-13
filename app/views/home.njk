@@ -1,15 +1,14 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-    <section class="articles">
-        {% for item in articles %}
-            <h3><a href="/articles/{{item.id}}">{{ item.title }}</a></h3>
-            <per>{{item.description | safe}}</per>
-        {% endfor %}
-    </section>
-{% endblock %}
-
-{% block footer %}
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlighting()</script>
+    {% for item in articles %}
+        <section class="article">
+            <h3 class="article-title"><a href="/articles/{{item.id}}">{{ item.title }}</a></h3>
+            <div class="article-description">{{item.description | safe}}</div>
+            <div class="article-meta">
+                <time>{{item.createdAt | date('YYYY-MM-DD')}}</time> • 
+            </div>
+            <hr class="article-divider">
+        </section>
+    {% endfor %}
 {% endblock %}

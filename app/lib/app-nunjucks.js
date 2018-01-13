@@ -2,11 +2,12 @@
  * @Author: lijianzhang
  * @Date: 2018-01-07 17:39:48
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-07 18:42:03
+ * @Last Modified time: 2018-01-13 11:25:23
  * @flow
  */
 
 import nunjucks from 'nunjucks';
+import dateFilter from 'nunjucks-date-filter';
 import App from './App';
 
 // autoescape(默认值: true) 控制输出是否被转义
@@ -57,5 +58,7 @@ export default function createView(app: App, path: string, opts: OptionsType = {
         this.body = html;
         return html;
     };
+
+    dateFilter.install(env, 'date');
     return env;
 }

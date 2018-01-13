@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js & cd ./frontend && npm run start"
+    "start": "nodemon index.js",
+    "frontend": "cd ./frontend && npm run start"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "eslint-plugin-flowtype": "^2.40.1",
     "eslint-plugin-import": "^2.8.0",
     "flow-bin": "^0.62.0",
+    "nunjucks-date-filter": "^0.1.1",
     "sequelize-cli": "^3.2.0"
   },
   "dependencies": {
@@ -36,6 +38,7 @@
     "koa-router": "^7.3.0",
     "koa-static": "^4.0.2",
     "marked": "^0.3.9",
+    "nodemon": "^1.14.11",
     "nunjucks": "^3.0.1",
     "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",

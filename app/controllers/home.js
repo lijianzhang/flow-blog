@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-06 23:29:41
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-11 23:04:59
+ * @Last Modified time: 2018-01-13 20:00:48
  * @flow
  */
 
@@ -27,6 +27,21 @@ export default class Home extends App.Controller {
         this.ctx.render('home.njk', {
             module: 'home',
             articles,
+        });
+    }
+
+    @App.router.get('/articles')
+    async articles() {
+        const articles = await ArticleModel.findAll();
+        const articlesByYear = {};
+        articles.forEach((article) => {
+            const year = article.createdAt.getFullYear();
+            if (!articlesByYear[year]) articlesByYear[year] = [];
+            articlesByYear[year].push(article);
+        });
+        this.ctx.render('articles.njk', {
+            module: 'article',
+            articlesByYear,
         });
     }
 

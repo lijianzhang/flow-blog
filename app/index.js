@@ -1,8 +1,8 @@
 /*
  * @Author: lijianzhang
  * @Date: 2018-01-01 17:07:53
- * @Last Modified by: 天吾
- * @Last Modified time: 2018-01-12 16:16:26
+ * @Last Modified by: lijianzhang
+ * @Last Modified time: 2018-01-13 19:28:55
  * @flow
  */
 
@@ -11,12 +11,11 @@ import logger from 'koa-logger';
 import redisStore from 'koa-redis';
 import session from 'koa-generic-session';
 import path from 'path';
-import proxy from 'koa-proxy';
-// import serve from 'koa-static';
 import CSRF from 'koa-csrf';
 import App from './lib/App';
 import router from './controllers';
 import nunjucks from './lib/app-nunjucks';
+import devResource from './middlewares/dev-resource-middleware';
 import config from '../config';
 
 const app = new App();
@@ -24,10 +23,7 @@ const app = new App();
 app.keys = ['blog', 'flow'];
 
 if (app.isDev) {
-    app.use(proxy({
-        host: `${config.staticHost}:${config.staticPort}/`,
-        match: new RegExp(`^(${config.publicPath})|(sockjs-node)|(__webpack_dev_server__)/`),
-    }));
+    app.use(devResource());
 }
 
 app.use(logger());

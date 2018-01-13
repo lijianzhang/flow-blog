@@ -1,134 +1,19 @@
 @import './normalize.less';
-
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-
-blockquote {
-    padding: 8px 20px;
-    background-color: #FAFAFA;
-    border-left: 4px solid #ff5a5e;
-    word-break: break-word;
-    font-weight: 400;
-    line-height: 30px;
-    margin: 0 0 8px;
-}
-
+@import './markdown.less';
 html,
 body {
     width: 100%;
     height: 100%;
 }
 
-
 body {
     margin: 0;
-    color: #34495e;
+    color: @default-color;
     font-size: 15px;
     line-height: 1.6;
     background-color: #fff;
-    
     font-family: 'sourcesanspro', 'Helvetica Neue', Arial, sans-serif
 }
-
-
-/* begin hljs */
-
-.hljs {
-    position: relative;
-    border-radius: 2px;
-    line-height: 1.1em;
-    color: #525252;
-}
-
-
-
-.hljs-comment,
-.hljs-quote {
-    color: #a0a1a7;
-    font-style: italic
-}
-
-.hljs-doctag,
-.hljs-keyword,
-.hljs-formula {
-    color: #FA6E32
-}
-
-.hljs-section,
-.hljs-name,
-.hljs-selector-tag,
-.hljs-deletion,
-.hljs-subst {
-    color: #e45649
-}
-
-.hljs-literal {
-    color: #0184bb
-}
-
-.hljs-regexp {
-    color: #4CBF99;
-}
-
-.hljs-string,
-.hljs-addition,
-.hljs-attribute,
-.hljs-meta-string {
-    color: #86B300
-}
-
-.hljs-built_in,
-.hljs-class .hljs-title {
-    color: #c18401
-}
-
-.hljs-attr,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-type,
-.hljs-selector-class,
-.hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-number {
-    color: #986801
-}
-
-.hljs-symbol,
-.hljs-bullet,
-.hljs-link,
-.hljs-meta,
-.hljs-selector-id,
-.hljs-title {
-    color: #4078f2
-}
-
-.hljs-emphasis {
-    font-style: italic
-}
-
-.hljs-strong {
-    font-weight: bold
-}
-
-.hljs-link {
-    text-decoration: underline
-}
-
-pre {
-    font-size: 0.8em;
-    background-color: #f8f8f8;
-    font-family: 'Roboto Mono', Monaco, courier, monospace;
-    margin: 1em 0;
-    padding: 1em;
-    border-radius: 2px;
-    line-height: 1.1em;
-    color: #525252;
-    background: #FAFAFA;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
-}
-
-/* end hljs */
-
-
 
 .page-wrapper {
     max-width: 700px;
@@ -142,15 +27,13 @@ pre {
 .page-navbar {
     padding: 20px 100px;
     min-height: 60px;
-} 
+}
 
 ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
-
-
 
 ul.navbar-list {
     float: right;
@@ -172,23 +55,61 @@ li.navbar-item a {
     color: #2c3e50;
     padding-bottom: 6px;
     text-decoration: none;
-
 }
 
 li.navbar-item a.active,
-li.navbar-item a:hover{
-    border-bottom: 2px solid #ff5a5e;
+li.navbar-item a:hover {
+    border-bottom: 2px solid @primary-color;
 }
-
 
 @media screen and (max-width: 700px) {
     .page-navbar {
         padding: 20px 0;
         min-height: auto;
     }
-
     ul.navbar-list {
         float: none;
         text-align: center;
     }
-}  
+}
+
+.articles_year {
+    &-title {
+        font-size: 1.5em;
+    }
+    &-list {
+        padding: 2px 0 0 50px;
+    }
+    &-time {
+        color: @text-color-secondary;
+        width: 140px;
+        display: inline-block;
+    }
+}
+
+.article {
+    &-description {
+        color: @text-color-secondary;
+    }
+    &-title {
+        margin-top: 0;
+        margin-bottom: .2em;
+        font-size: 1.5em;
+        line-height: 1.3em;
+        a {
+            color: #34495e;
+            &:hover {
+                color: lighten(@primary-color, 5%);
+            }
+        }
+    }
+    &-meta {
+        margin: 0.5em 0;
+        color: #c7c7c7;
+    }
+    &-divider {
+        width: 50%;
+        margin: 1.2em 0 1.1em 0;
+        border-top: 1px solid #DDDDDD;
+    }
+}
