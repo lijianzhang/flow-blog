@@ -13,6 +13,5 @@ module.exports = function getLessVariables(file) {
         var value = _pair[1].replace(';', '').replace('\r', '').replace(/^\s+|\s+$/g, '')
         variables[key] = value;
     });
-    console.log(variables)
     return variables
 }

@@ -5,7 +5,8 @@
   "main": "config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --hotOnly --config webpack.config.js"
+    "start": "webpack-dev-server --hotOnly --config webpack.config.js",
+    "build": "NODE_ENV=production CDN_PATCH=/  webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",

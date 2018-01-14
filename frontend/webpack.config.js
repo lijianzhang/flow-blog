@@ -16,6 +16,8 @@ const path = require('path');
 
 const debug = env.debug;
 
+console.log(env.CDN_PATCH)
+
 manifest = new WebpackAssetsManifest({
     publicPath: env.CDN_PATCH || devConfig.publicPath,
     output: `manifest-${tag.slice(0, 7)}.json`,

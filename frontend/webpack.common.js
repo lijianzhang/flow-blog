@@ -9,6 +9,8 @@ const getLessVariables = require('./scripts/get-less-variables.js');
 
 const debug = env.debug;
 
+console.log('env.debug', env.debug);
+
 module.exports = function common(config) {
     return {
         entry: config.entry,
@@ -17,7 +19,7 @@ module.exports = function common(config) {
 
             path: env.distPath, // string
             // 所有输出文件的目标路径 必须是绝对路径（使用 Node.js 的 path 模块）
-            publicPath: devConfig.publicPath, // string
+            publicPath: env.CDN_PATCH || devConfig.publicPath, // string
             filename: debug ? '[name].js' : '[name]_[hash].js', // string
             // 「入口分块(entry chunk)」的文件名模板（出口分块？）
             chunkFilename: debug ? '[name].js' : '[name]_[hash].js',
@@ -65,7 +67,7 @@ module.exports = function common(config) {
                         : ExtractTextPlugin.extract(['css-loader', {
                             loader: 'less-loader',
                             options: {
-                                globalVars: getLessVariables(config.themePath)
+                                globalVars: getLessVariables('./src/less/var.less')
                             }
                         }]),
                 },

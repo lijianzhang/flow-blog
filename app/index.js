@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 17:07:53
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-14 18:39:40
+ * @Last Modified time: 2018-01-14 21:26:49
  * @flow
  */
 
@@ -12,6 +12,7 @@ import redisStore from 'koa-redis';
 import session from 'koa-generic-session';
 import path from 'path';
 import CSRF from 'koa-csrf';
+import serve from 'koa-static';
 import App from './lib/App';
 import router from './controllers';
 import nunjucks from './lib/app-nunjucks';
@@ -19,6 +20,7 @@ import devResource from './middlewares/dev-resource-middleware';
 import commonState from './middlewares/common-state-middleware';
 import flash from './middlewares/flash-middleware';
 import config from '../config';
+import env from '../frontend/env';
 
 const app = new App();
 
@@ -27,6 +29,9 @@ app.keys = ['blog', 'flow'];
 if (app.isDev) {
     app.use(devResource());
 }
+
+app.use(serve(env.distPath));
+
 
 app.use(logger());
 
@@ -58,15 +63,16 @@ app.use(new CSRF({
 }));
 
 
-const env = nunjucks(app, path.resolve(__dirname, 'views'), { watch: true, noCache: app.isDev });
+const nunjuck = nunjucks(app, path.resolve(__dirname, 'views'), { watch: true, noCache: app.isDev });
 
 /** 配置资源文件路径 */
-env.addGlobal('assets', (string: string) => {
+nunjuck.addGlobal('assets', (string: string) => {
     if (app.isDev) {
         if (string.endsWith('css')) return '';
         return `${config.publicPath}${string}`;
     }
-    return string;
+    const manfiest = require(env.distPath + '/manifest-dev.json'); //eslint-disable-line
+    return manfiest[string];
 });
 
 app.use(commonState);

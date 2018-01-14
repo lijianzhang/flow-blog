@@ -2,7 +2,7 @@ const path = require('path');
 
 const basePath = path.resolve(__dirname);
 
-const distPath = path.join(__dirname, 'dist');
+const distPath = path.join(__dirname, '..', 'dist');
 
 const dllPath = path.resolve(__dirname, 'dll');
 

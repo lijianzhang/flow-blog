@@ -16,7 +16,7 @@
     "production": {
         "username": "dio",
         "password": "dio",
-        "database": "blog_production",
+        "database": "blog_development",
         "host": "127.0.0.1",
         "dialect": "postgres"
     }
