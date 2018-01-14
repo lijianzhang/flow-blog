@@ -5,6 +5,7 @@ export default class Admin extends App.Controller {
         if (this.ctx.session.user) {
             this.next();
         } else {
+            this.ctx.flashMessage = '请先登录';
             this.ctx.redirect('/login');
         }
     }

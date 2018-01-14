@@ -11,7 +11,6 @@
     {% endblock %}
 </head>
 <body>
-    <h1>{{flashMessage}}</h1>
     <div class="page-wrapper">
         <header class="page-navbar">
             <ul class="navbar-list">
@@ -20,6 +19,7 @@
                 <li class="navbar-item"><a href="https://github.com/lijianzhang" target="_blank">GITHUB</a></li>
             </ul>
         </header>
+        <h1>{{flashMessage.toString() }}</h1>
         <div class="page-container">
             {% block content %}
 
