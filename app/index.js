@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 17:07:53
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-13 19:28:55
+ * @Last Modified time: 2018-01-14 18:39:40
  * @flow
  */
 
@@ -16,6 +16,8 @@ import App from './lib/App';
 import router from './controllers';
 import nunjucks from './lib/app-nunjucks';
 import devResource from './middlewares/dev-resource-middleware';
+import commonState from './middlewares/common-state-middleware';
+import flash from './middlewares/flash-middleware';
 import config from '../config';
 
 const app = new App();
@@ -37,8 +39,13 @@ app.use(async (ctx, next) => {
 
 app.use(session({
     store: redisStore(),
-    key: 'blog.sid',
-    prefix: 'blog.sess',
+    key: 'dio.blog.sid',
+    prefix: 'dio.blog.sess',
+}));
+
+app.use(bodyparser({
+    formLimit: '1mb',
+    jsonLimit: '1mb',
 }));
 
 app.use(new CSRF({
@@ -50,10 +57,6 @@ app.use(new CSRF({
     disableQuery: false,
 }));
 
-app.use(bodyparser({
-    formLimit: '1mb',
-    jsonLimit: '1mb',
-}));
 
 const env = nunjucks(app, path.resolve(__dirname, 'views'), { watch: true, noCache: app.isDev });
 
@@ -66,7 +69,10 @@ env.addGlobal('assets', (string: string) => {
     return string;
 });
 
-// app.use(serve(path.resolve(__dirname, 'dist')));
+app.use(commonState);
+
+app.use(flash());
+
 app.use(router.routes());
 
 app.listen('3001');

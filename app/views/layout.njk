@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="_csrf" data-value="{{csrf}}">
     <link rel="stylesheet" href="{{assets('app.css')}}">
     <title>{%block title%} 首页 {% endblock %}</title>
     {% block head %}
     {% endblock %}
 </head>
 <body>
+    <h1>{{flashMessage}}</h1>
     <div class="page-wrapper">
         <header class="page-navbar">
             <ul class="navbar-list">

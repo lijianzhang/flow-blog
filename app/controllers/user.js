@@ -5,7 +5,7 @@ export default class User extends App.Controller {
     @App.router.get('/user')
     async index() {
         const { username, password } = this.ctx.query;
-        let user = await UserModel.findOne({ username });
+        let user = await UserModel.findOne({ where: { username } });
         if (user) this.ctx.throw(400, '用户名已被注册');
         user = await UserModel.create({ username, password });
         this.ctx.body = user;

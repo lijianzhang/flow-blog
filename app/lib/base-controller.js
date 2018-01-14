@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-06 21:18:26
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-11 23:04:43
+ * @Last Modified time: 2018-01-14 20:03:59
  * @flow
  */
 
@@ -32,9 +32,27 @@ export default class BaseController {
 
         this.methods.forEach(({ func, method, path }) => {
             const middleware = async (ctx: AppContext, next: () => Promise<void>) => {
+                let beforeNext = next;
+                let afterNext = next;
                 const ctl = new this(ctx, next);
-                ctl.app = ctx.app;
-                await (ctl: any)[func](ctx, next);
+
+                if (ctl.__after) {
+                    afterNext = async () => {
+                        ctl.next = next;
+                        await ctl.__after(ctx, next);
+                    };
+                }
+
+                beforeNext = async () => {
+                    ctl.next = next;
+                    await (ctl: any)[func](ctx, afterNext);
+                };
+                if (ctl.__before) {
+                    ctl.next = beforeNext;
+                    await ctl.__before(ctx, beforeNext);
+                } else {
+                    await beforeNext();
+                }
             };
 
             (router: any)[method](path, middleware);
@@ -64,6 +82,8 @@ export default class BaseController {
 
     ctx: AppContext;
     next: () => Promise<any>;
+    __before: (ctx: AppContext, next: () => Promise<any>) => Promise<any>;
+    __after: (ctx: AppContext, next: () => Promise<any>) => Promise<any>;
     app: App;
 }
 
@@ -77,7 +97,7 @@ function decorateRoter(path: string, methods: string[]) {
 }
 
 export const router = {
-    methods(path: string, methods: string | string[]) {
+    route(path: string, methods: string | string[]) {
         if (typeof methods === 'string') methods = [methods];
         decorateRoter(path, methods);
     },

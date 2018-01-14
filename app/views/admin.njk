@@ -1,0 +1,14 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+    <div>
+        <form action="/articles" method="post">
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+            <label>标题</label>
+            <input type="text" name="title">
+            <textarea name="content" id="" cols="30" rows="10"></textarea>
+            <button type="submit">添加</button>
+        </form>
+    </div>
+{% endblock %}
+

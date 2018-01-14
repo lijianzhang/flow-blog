@@ -78,6 +78,12 @@ module.exports = function common(config) {
                         },
                     }],
                 },
+                {
+                    test: /\.(woff|woff2|svg|eot|ttf)/,
+                    use: [{
+                        loader: 'file-loader',
+                    }],
+                },
             ],
             /* 高级模块配置（点击展示） */
         },
