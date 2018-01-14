@@ -21,7 +21,12 @@ export default function onContextError(err: Error, ctx: Context) {
         case 'text/html':
         case 'html': {
             if (status === 404) body = ctx.render('404.njk');
-            else body = ctx.render('error.njk', { error: err, status });
+            else if (status === 400) {
+                ctx.flashMessage.error = err.message;
+                ctx.redirect('back');
+            } else {
+                body = ctx.render('error.njk', { error: err, status });
+            }
             break;
         }
         case 'application/json':

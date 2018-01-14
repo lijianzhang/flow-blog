@@ -8,8 +8,7 @@ export default class Article extends App.Controller {
         if (!this.ctx.session.user) this.ctx.throw(400);
         let article = await ArticleModel.findOne({ where: { title } });
         if (article) {
-            this.ctx.flashMessage = '标题已存在';
-            this.ctx.redirect('back');
+            this.ctx.throw(400, '标题已存在');
             return;
         }
 
