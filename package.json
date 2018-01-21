@@ -26,6 +26,7 @@
     "flow-bin": "^0.62.0",
     "nunjucks-date-filter": "^0.1.1",
     "sequelize-cli": "^3.2.0",
+    "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
