@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common');
 const env = require('./env');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
