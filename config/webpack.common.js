@@ -3,9 +3,9 @@ const path = require('path');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const env = require('./env');
-const devConfig = require('../config');
-const getLessVariables = require('./scripts/get-less-variables.js');
+const env = require('../env');
+const devConfig = require('./');
+const getLessVariables = require('../frontend/scripts/get-less-variables.js');
 
 const debug = env.debug;
 
@@ -61,13 +61,13 @@ module.exports = function common(config) {
                         ? ['style-loader', 'css-loader', {
                             loader: 'less-loader',
                             options: {
-                                globalVars: getLessVariables('./src/less/var.less')
+                                globalVars: getLessVariables(path.join(__dirname, '../frontend/src/less/var.less'))
                             }
                         }]
                         : ExtractTextPlugin.extract(['css-loader', {
                             loader: 'less-loader',
                             options: {
-                                globalVars: getLessVariables('./src/less/var.less')
+                                globalVars: getLessVariables(path.join(__dirname, '../frontend/src/less/var.less'))
                             }
                         }]),
                 },

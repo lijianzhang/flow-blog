@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 17:07:53
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-14 21:26:49
+ * @Last Modified time: 2018-01-25 21:07:31
  * @flow
  */
 
@@ -20,7 +20,7 @@ import devResource from './middlewares/dev-resource-middleware';
 import commonState from './middlewares/common-state-middleware';
 import flash from './middlewares/flash-middleware';
 import config from '../config';
-import env from '../frontend/env';
+import env from '../env';
 
 const app = new App();
 

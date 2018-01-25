@@ -1,4 +1,4 @@
-version: '2.1'
+version: '2'
 
 services:
   web:
@@ -8,9 +8,22 @@ services:
       NODE_ENV: production
     ports:
       - 3001:3001
-  frontend:
-    image: image
-    build: ./frontend
-    environment:
-      NODE_ENV: production
+
+  # frontend:
+  #   image: image
+  #   build: ./frontend
+  #   environment:
+  #     NODE_ENV: production
     
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: dio
+      POSTGRES_USER: dio
+    ports:
+      - 5432:5432

@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const fs = require('fs');
-const env = require('../env');
-const packageDependencies = require('../package.json').dependencies;
+const env = require('../../env');
+const packageDependencies = require('../../package.json').dependencies;
 
 const NEED_BUILD_MODULES = ['react', 'react-dom', 'antd', 'axios', 'react-router-dom'];
 

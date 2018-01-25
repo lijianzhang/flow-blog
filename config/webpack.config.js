@@ -1,11 +1,11 @@
 const webpack = require('webpack');
 const common = require('./webpack.common');
-const env = require('./env');
+const env = require('../env');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
-const devConfig = require('../config');
+const devConfig = require('./');
 
 console.log('process.env.CI_BUILD_REF: ', process.env.CI_BUILD_REF);
 
@@ -24,7 +24,7 @@ manifest = new WebpackAssetsManifest({
 
 
 const config = common({
-    entry: { app: ['./src'] },
+    entry: { app: ['../frontend/src'] },
 
     devtool: debug ? 'source-map' : null,
     // 牺牲了构建速度的 `source-map' 是最详细的。
