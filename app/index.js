@@ -2,7 +2,7 @@
  * @Author: lijianzhang
  * @Date: 2018-01-01 17:07:53
  * @Last Modified by: lijianzhang
- * @Last Modified time: 2018-01-25 21:07:31
+ * @Last Modified time: 2018-01-27 20:54:32
  * @flow
  */
 
@@ -43,7 +43,9 @@ app.use(async (ctx, next) => {
 });
 
 app.use(session({
-    store: redisStore(),
+    store: redisStore({
+        host: process.env.redis || '127.0.0.1',
+    }),
     key: 'dio.blog.sid',
     prefix: 'dio.blog.sess',
 }));
@@ -81,4 +83,4 @@ app.use(flash());
 
 app.use(router.routes());
 
-app.listen('3001');
+app.listen(process.env.port || '3001');

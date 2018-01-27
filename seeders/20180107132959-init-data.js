@@ -3,7 +3,7 @@ module.exports = {
     up(queryInterface, Sequelize) {
         return queryInterface.bulkInsert('Users', [{
             username: 'milo',
-            password: '1234567',
+            password: '3c439553528ddb60aef490b655bff3bcb61a209d',
             createdAt: new Date(),
             updatedAt: new Date(),
         }], {});

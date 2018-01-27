@@ -1,29 +1,31 @@
-version: '2'
+version: '2.1'
 
 services:
   web:
     image: web
     build: .
     environment:
-      NODE_ENV: production
+      redis: redis
+      port: 3001
+    depends_on:
+      - redis
+      - postgres
+    links:
+      - redis
+      - postgres
     ports:
       - 3001:3001
-
-  # frontend:
-  #   image: image
-  #   build: ./frontend
-  #   environment:
-  #     NODE_ENV: production
     
   redis:
     image: redis
     ports:
-      - 6379:6379
+      - 3797:6379
 
   postgres:
     image: postgres
     environment:
       POSTGRES_PASSWORD: dio
       POSTGRES_USER: dio
+      POSTGRES_DB: blog
     ports:
-      - 5432:5432
+      - 4321:5432
