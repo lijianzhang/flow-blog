@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sequelize db:migrate && sequelize db:seed && npm run build &&  nodemon index.js",
-    "dev": "sequelize db:migrate && sequelize db:seed:all &&  nodemon index.js & webpack-dev-server --hotOnly --config ./config/webpack.config.js",
-    "start:pro": "NODE_ENV=production pm2 startOrRestart index --name blog",
+    "start": "sequelize db:migrate && sequelize db:seed:all && npm run build &&  nodemon index.js",
+    "dev": "sequelize db:migrate &&  nodemon index.js & webpack-dev-server --hotOnly --config ./config/webpack.config.js",
+    "start:pro": "pm2-runtime  -i 0 index.js",
     "frontend": "cd ./frontend && npm run start",
-    "build": "CDN_PATCH=/ webpack --config ./config/webpack.config.js"
+    "build": "NODE_ENV=production CDN_PATCH=/ webpack --config ./config/webpack.config.js"
   },
   "author": "",
   "license": "ISC",

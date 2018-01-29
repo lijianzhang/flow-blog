@@ -1,10 +1,11 @@
 FROM node
-VOLUME ["/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro"]
+RUN ln -sf /usr/share/zoneinfo/Asia/ShangHai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone && \
+    dpkg-reconfigure -f noninteractive tzdata
 RUN mkdir /var/blog
 WORKDIR /var/blog
-COPY package.json .
+RUN ls -l
 RUN npm install --registry=https://registry.npm.taobao.org
-COPY . .
 EXPOSE 3001
 ENV NODE_ENV=production
-CMD npm start
+CMD npm run start:pro

@@ -1,9 +1,12 @@
-version: '2.1'
+version: "3.3"
 
 services:
   web:
     image: web
     build: .
+    volumes:
+      - /~/demos/blog:/var/blog
+
     environment:
       redis: redis
       port: 3001
@@ -13,6 +16,14 @@ services:
     links:
       - redis
       - postgres
+    deploy:
+          replicas: 4
+          restart_policy:
+            condition: on-failure
+          resources:
+            limits:
+              cpus: "0.1"
+              memory: 50M
     ports:
       - 3001:3001
     
@@ -23,6 +34,9 @@ services:
 
   postgres:
     image: postgres
+    environment:
+    volumes:
+      - /~/demos/blog/pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: dio
       POSTGRES_USER: dio

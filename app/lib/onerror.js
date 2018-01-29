@@ -16,31 +16,29 @@ export default function onContextError(err: Error, ctx: Context) {
 
     let body: string;
     ctx.type = ctx.accepts('html', 'json', 'application/json', 'text') || 'html';
-    if (ctx.app.env === 'development') {
-        switch (ctx.type) {
-        case 'text/html':
-        case 'html': {
-            if (status === 404) body = ctx.render('404.njk');
-            else if (status === 400) {
-                ctx.flashMessage.error = err.message;
-                ctx.redirect('back');
-            } else {
-                body = ctx.render('error.njk', { error: err, status });
-            }
-            break;
+    switch (ctx.type) {
+    case 'text/html':
+    case 'html': {
+        if (status === 404) body = ctx.render('404.njk');
+        else if (status === 400) {
+            ctx.flashMessage.error = err.message;
+            ctx.redirect('back');
+        } else {
+            body = ctx.render('error.njk', { error: err, status });
         }
-        case 'application/json':
-        case 'json': {
-            body = JSON.stringify({
-                code: ctx.status,
-                message: err.message,
-                statck: err.stack,
-            });
-            break;
-        }
-        default:
-            body = err.message;
-        }
+        break;
+    }
+    case 'application/json':
+    case 'json': {
+        body = JSON.stringify({
+            code: ctx.status,
+            message: err.message,
+            statck: err.stack,
+        });
+        break;
+    }
+    default:
+        body = err.message;
     }
     ctx.res.end(body);
 }
