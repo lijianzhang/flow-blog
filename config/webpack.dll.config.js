@@ -1,12 +1,12 @@
 const webpack = require('webpack');
 const env = require('./env');
-const common = require('./webpack.common');
+const baseConfig = require('./webpack.base');
 
 const debug = process.env.NODE_ENV !== 'production';
 
 module.exports = function dll(dependencies) {
     const vendors = Object.keys(dependencies);
-    const config = common({
+    const config = baseConfig({
         entry: {
             vendors,
         },

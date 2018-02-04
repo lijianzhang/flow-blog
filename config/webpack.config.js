@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const common = require('./webpack.common');
+const baseConfig = require('./webpack.base');
 const env = require('../env');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -23,7 +23,7 @@ manifest = new WebpackAssetsManifest({
 });
 
 
-const config = common({
+const config = baseConfig({
     entry: { app: ['../frontend/src'] },
 
     devtool: debug ? 'source-map' : null,

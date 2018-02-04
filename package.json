@@ -9,7 +9,9 @@
     "dev": "sequelize db:migrate &&  nodemon index.js & webpack-dev-server --hotOnly --config ./config/webpack.config.js",
     "start:pro": "pm2-runtime  -i 0 index.js",
     "frontend": "cd ./frontend && npm run start",
-    "build": "NODE_ENV=production CDN_PATCH=/ webpack --config ./config/webpack.config.js"
+    "build": "NODE_ENV=production CDN_PATCH=/ webpack --config ./config/webpack.config.js",
+    "migrate": "sequelize db:migrate",
+    "initSeed": "sequelize db:seed:all"
   },
   "author": "",
   "license": "ISC",

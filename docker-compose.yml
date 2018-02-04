@@ -5,7 +5,7 @@ services:
     image: web
     build: .
     volumes:
-      - /~/demos/blog:/var/blog
+      - $PWD:/var/blog
 
     environment:
       redis: redis
@@ -36,7 +36,7 @@ services:
     image: postgres
     environment:
     volumes:
-      - /~/demos/blog/pgdata:/var/lib/postgresql/data
+      - $PWD/pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: dio
       POSTGRES_USER: dio
